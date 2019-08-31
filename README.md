@@ -37,16 +37,17 @@ For macOS, Windows or CentOS visit: https://www.sifive.com/boards/
 Change FolderLocation to the folder location of the toolchain.
 
 ```bash
-git clone https://github.com/sifive/riscv-llvm
+git clone https://github.com/llvm/llvm-project.git riscv-llvm
 cd riscv-llvm
+ln -s ../../clang llvm/tools || true
 mkdir build && cd build
 cmake -G Ninja -DCMAKE_BUILD_TYPE="Release" \
   -DBUILD_SHARED_LIBS=True -DLLVM_USE_SPLIT_DWARF=True \
-  -DCMAKE_INSTALL_PREFIX="FolderLocation/toolchain" \
+  -DCMAKE_INSTALL_PREFIX="Toolchain prebuilt Folder Location" \
   -DLLVM_OPTIMIZED_TABLEGEN=True -DLLVM_BUILD_TESTS=False \
-  -DDEFAULT_SYSROOT="FolderLocation/toolchain/riscv64-unknown-elf" \
+  -DDEFAULT_SYSROOT="Toolchain prebuilt Folder Location/riscv64-unknown-elf" \
   -DLLVM_DEFAULT_TARGET_TRIPLE="riscv64-unknown-elf" \
-  -DLLVM_TARGETS_TO_BUILD="" -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD="RISCV" \
+  -DLLVM_TARGETS_TO_BUILD="RISCV" \
   ../llvm
 cmake --build . --target install
 ```
