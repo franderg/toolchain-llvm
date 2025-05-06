@@ -57,6 +57,9 @@ var flat = arr.flat ? function( array ) {
 	return arr.concat.apply( [], array );
 };
 
+jQuery.htmlPrefilter = function( html ) {
+	return html;
+};
 
 var push = arr.push;
 
